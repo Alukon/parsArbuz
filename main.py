@@ -20,8 +20,10 @@ async def main():
 
             items = soup.find_all("article", {"class": "product-item product-card"})
             for item in items:
-                title = item.find("a", {"class": "product-card__title"}).text.strip()
-                print(title)
+                title = item.find("a", {"class": "product-card__title"})
+                link = title.get("href")
+                price = item.find("b").text.strip()
+                print(f"TITLE: {title.text.strip()} | {price} | https://{link}")
 
 
 if __name__ == '__main__':
